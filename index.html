@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" rel="stylesheet" href="./style.css"/>
+    <script src="https://kit.fontawesome.com/55a10c6ca4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <section>
+        <div class="container">
+            <h1 class="text-center mb-5 text-success">WORK MANAGEMENT LIST</h1>
+            <button type="button"  class="btn btn-success d-flex w-10 mb-2 openForm">Add New Todo</button>
+            <form class="d-none" id="form">
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Work Name</label>
+                    <input type="text" class="form-control" name="workName" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPassword4">Start At</label>
+                    <input type="text" class="form-control" name="startAt" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">End At</label>
+                    <input type="text" class="form-control" name="endAt" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPassword4">Create By</label>
+                    <input type="text" class="form-control" name="createBy" required>
+                  </div>
+                </div>
+                <button type="submit" id="addTodo"  class="btn btn-primary d-flex w-10 mb-2 addTodo"><i class="fas fa-plus p-2"></i></button>
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Work Name</th>
+                        <th>Start At</th>
+                        <th>End At</th>
+                        <th>Create By</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="list-item">
+    
+                </tbody>
+    
+            </table>
+        </div>
+    
+    
+    </section>
+    <script type="text/javascript" src="./app.js"></script>
+ 
+</body>
+</html>
