@@ -3,16 +3,28 @@ const form = document.querySelector('#form');
 const worksData = [];
 const addButton = document.querySelector('.addTodo');
 const renderSection = document.querySelector('#list-item');
+const deleteButtons = document.querySelectorAll('.deleteTodo');
 openForm.addEventListener('click',openField);
 addButton.addEventListener('click',add);
 
 function openField(){ 
     form.classList.toggle('d-none');
 }
-function render(array){
+function getLocalStorage(){
+    let getWorks = localStorage.getItem('todoList');
+    if(!getWorks){
+        array = [];
+    }else{
+        array = JSON.parse(getWorks);
+    }
+}
+
+render();
+function render(){
+    getLocalStorage();
     let rows = "";
   
-    array.forEach(item=>{
+    array.forEach((item)=>{
         rows += '<tr>'+
         '<td>'+item.id+'</td>'+
         '<td>'+item.workName+'</td>'+
@@ -27,15 +39,36 @@ function render(array){
     renderSection.innerHTML = rows;
 }
 let inputs = form.getElementsByTagName('input');
-let index = 1;
 function add(event){
     event.preventDefault();
     let workItem = {};
-    workItem["id"] = index++;
     [...inputs].forEach(item=>workItem[item.name] = item.value);
-    worksData.push(workItem);
-    render(worksData);
+    getLocalStorage();
+    workItem["id"] = array.length +1;
+    array.push(workItem);
+    localStorage.setItem('todoList',JSON.stringify(array));
+    render();
 }
+
+function deleteTodo(id){
+    console.log(id);
+    getLocalStorage();
+    console.log(array[id]);
+    // array.filter((item)=>{
+    //     return item.id != id;
+    // })
+    // localStorage.setItem('todoList',JSON.stringify(array));
+    // render();
+    // console.log(array);
+}
+let deleteAction = renderSection.querySelectorAll('.deleteTodo');
+[...deleteAction].forEach(item=>{
+    item.addEventListener('click',()=>{
+        deleteTodo(item.getAttribute('data-id'));
+    })
+})
+
+
 
 
 
